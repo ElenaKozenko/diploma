@@ -8,7 +8,7 @@ try {
     $passwd = 'root';
     $db = new PDO($dsn, $username, $passwd);
     //Hello World!!!
-    //Hello World 2 !!!
+    //Hello World 2 !!! + Hello World 3 !!!
 } 
 catch (PDOException $e)
  { echo $e->getMessage(); }
