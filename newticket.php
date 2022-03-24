@@ -96,12 +96,9 @@ form {
         addQuestion($db, $tkt_id, $pic_id, $tp_id, $task, $true_ans, $ans1, $ans2, $ans3, $ans4, $ans5, $description);
             }?> 
 
-
-
-
 </body>
 </html>
-
+<!-- привет Вадим -->
 <!-- <label for=""> </label>
             <select id="simple" name="theme">
                 <option>Banana</option>
