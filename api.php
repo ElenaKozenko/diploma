@@ -48,4 +48,5 @@ return $result;
 }
 
 //ghgghjgggjhghjtfrd
+//билеберда 2
 ?>
