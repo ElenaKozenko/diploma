@@ -92,6 +92,7 @@ form {
             $ans4=$_POST['answer4'];
             $ans5=$_POST['answer5'];
             $description=$_POST['description'];
+            var_dump($_POST);
         addQuestion($db, $tkt_id, $pic_id, $tp_id, $task, $true_ans, $ans1, $ans2, $ans3, $ans4, $ans5, $description);
             }?> 
 

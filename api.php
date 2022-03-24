@@ -17,7 +17,7 @@ return $result;
 //ВСТАВКА В "Вопросы""
 function  addQuestion($db, $tkt_id, $pic_id, $tp_id, $task, $true_ans, $ans1, $ans2, $ans3, $ans4, $ans5, $description)
 {
-$sql ="INSERT INTO questions( tkt_id, pic_id, tp_id, task, true_ans, ans1, ans2, ans3, ans4, ans5, 'description')
+$sql ="INSERT INTO questions (tkt_id, pic_id, tp_id, task, true_ans, ans1, ans2, ans3, ans4, ans5, `description` )
 VALUES( :tkt_id, :pic_id, :tp_id, :task, :true_ans, :ans1, :ans2, :ans3, :ans4, :ans5, :'description');";
 $stmt=$db->prepare($sql);
 $stmt->bindValue('tkt_id', $tkt_id, PDO::PARAM_INT);
