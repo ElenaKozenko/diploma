@@ -5,7 +5,7 @@ try {
     $dbname = 'testpdd0';
     $dsn = "mysql:host=$host;port=$port;dbname=$dbname";
     $username = 'root';
-    $passwd = 'root'; //Можно убрать
+    $passwd = 'root';
     $db = new PDO($dsn, $username, $passwd);
 } 
 catch (PDOException $e)
