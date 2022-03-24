@@ -7,6 +7,7 @@ try {
     $username = 'root';
     $passwd = 'root';
     $db = new PDO($dsn, $username, $passwd);
+    //Hello World!!!
 } 
 catch (PDOException $e)
  { echo $e->getMessage(); }
