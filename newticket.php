@@ -19,12 +19,23 @@ form {
   </head>
 <body>
 
-<?php include 'db.php';  ?>
-<?php  include 'api.php'; ?>
-<?php $topic = getAllTopics($db); ?>
-<?php $tkt = getAllTickets($db); ?>
+<?php 
+    include 'db.php';  
+    include 'api.php';
+    $topic = getAllTopics($db);
+    $tkt = getAllTickets($db);
 
-    <form name="" action="" method="post">
+    $pathImg = '/pic/no_pic.png';
+    if( isset($_GET['q']) ){
+        $pt = 'uploaded/'.$_GET['q'].'.jpg';
+        if(file_exists($pt)){
+            $pathImg = '/uploaded/'.$_GET['q'].'.jpg';
+        }
+    }
+    
+?>
+<img height="200px" src="<?php echo $pathImg; ?>" alt="">
+    <form name="" action="" method="post" enctype="multipart/form-data">
        <!--  <label for="num_question">Вопрос №: </label> 
         <input type="text" id="num_question" name="num_question" > -->
         <!-- название билета -->
@@ -49,6 +60,10 @@ form {
 
         <label for="picture">Код картинки: </label> 
         <input type="number" id="picture" name="picture" >
+        
+        <label for="upload_img">Загрузить изображение</label>
+        <input type="file" id="upload_img" name="upload_img"
+          accept=".jpg, .jpeg, .png">
 
         <label for="question">Вопрос: </label> <!-- ввод вопроса -->
         <input type="text" id="question" name="question" placeholder="Введите вопрос здесь" maxlength="">
@@ -78,8 +93,9 @@ form {
         <input type="submit" value="Добавить вопрос">
     </form>
     <!-- if(isset($_POST['question'])) -->
+<?php
 
-    <?php if($_POST['question'] != '')  
+    if($_POST['question'] != '')  
             {
             $tkt_id=$_POST['ticket'];
             $pic_id=$_POST['picture'];
@@ -92,9 +108,10 @@ form {
             $ans4=$_POST['answer4'];
             $ans5=$_POST['answer5'];
             $description=$_POST['description'];
-            var_dump($_POST);
         addQuestion($db, $tkt_id, $pic_id, $tp_id, $task, $true_ans, $ans1, $ans2, $ans3, $ans4, $ans5, $description);
-            }?> 
+        UploadImage();
+}
+?>
 
 </body>
 </html>

@@ -1,6 +1,8 @@
 <?php
 include 'db.php';
 
+define('IMAGE_UPLOADED_PATH', 'uploaded/');
+
 //РАБОТА С ТАБЛИЦЕЙ "Темы"
 //ВЫВОД ВСЕЙ ИНФОРМАЦИИ ИЗ "Темы"
 function getAllTopics($db)
@@ -33,6 +35,23 @@ $stmt->bindValue('ans5', $ans5, PDO::PARAM_STR);
 $stmt->bindValue('description', $description, PDO::PARAM_STR);
 $stmt->execute();
 echo var_dump($stmt->errorInfo());
+}
+
+
+function UploadImage(){
+global $_FILES, $_POST;
+
+$fileName = $_POST['ticket'].'_'.$_POST['question'].'.jpg';
+if ( 0 < $_FILES['upload_img']['error'] ) {
+    echo 'Error: ' . $_FILES['upload_img']['error'] . '<br>';
+}else if(
+    isset($_FILES['upload_img']) &&
+    $_FILES['upload_img']['size'] < 10000000 && 
+    ($_FILES['upload_img']['type'] == 'image/png' || $_FILES['upload_img']['type'] == 'image/jpeg') &&
+    (exif_imagetype($_FILES['upload_img']['tmp_name']) == IMAGETYPE_JPEG || exif_imagetype($_FILES['upload_img']['tmp_name']) == IMAGETYPE_PNG)
+){
+    @copy($_FILES['upload_img']['tmp_name'], IMAGE_UPLOADED_PATH.$fileName );
+}
 }
 
 //РАБОТА С ТАБЛИЦЕЙ "Билеты"
