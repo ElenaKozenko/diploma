@@ -23,7 +23,7 @@
 				unset($_SESSION['message']);
 			?>
 			<form action="login_query.php" method="POST">	
-				<h4 class="text-success">Авторизация</h4>
+				<h4 class="text-success">Авторизация HELLO</h4>
 				<hr style="border-top:1px groovy #000;">
 				<div class="form-group">
 					<label>Логин</label>
