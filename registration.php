@@ -15,25 +15,25 @@
 				<hr style="border-top:1px groovy #000;">
 				<div class="form-group">
 					<label>Фамилия</label>
-					<input type="text" class="form-control" name="surname" />
+					<input type="text" class="form-control" name="surname">
 				</div>
 				<div class="form-group">
 					<label>Имя</label>
-					<input type="text" class="form-control" name="firstname" />
+					<input type="text" class="form-control" name="name">
 				</div>
 
 				<div class="form-group">
 					<label>Отчество</label>
-					<input type="text" class="form-control" name="patronumic" />
+					<input type="text" class="form-control" name="patr">
 				</div>
 				
 				<div class="form-group">
 					<label>Логин</label>
-					<input type="text" class="form-control" name="login" />
+					<input type="text" class="form-control" name="login">
 				</div>
 				<div class="form-group">
 					<label>Пароль</label>
-					<input type="password" class="form-control" name="password" />
+					<input type="password" class="form-control" name="password">
 				</div>
 				<br />
 				<div class="form-group">

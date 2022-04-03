@@ -22,8 +22,13 @@ form {
 <?php 
     include 'db.php';  
     include 'api.php';
+    include 'questions_query.php';
     $topic = getAllTopics($db);
     $tkt = getAllTickets($db);
+
+    
+    $tkt_id = $_GET['tkt_id'];
+    $n = $_GET['n']; //порядковый номер билета
 
     $pathImg = '/pic/no_pic.png';
     if( isset($_GET['q']) ){
@@ -36,17 +41,10 @@ form {
 ?>
 <img height="200px" src="<?php echo $pathImg; ?>" alt="">
     <form name="" action="" method="post" enctype="multipart/form-data">
-       <!--  <label for="num_question">Вопрос №: </label> 
-        <input type="text" id="num_question" name="num_question" > -->
-        <!-- название билета -->
-       
-            <select id="ticket" name="ticket">
-            <?php foreach ($tkt as $row){
-                $id = $row['tkt_id'];
-                $name = $row['name'];
-                echo "<option value=\"$id\">$name</option>";}?>
-            </select>
-        <!-- <input type="number" id="ticket" name="ticket" placeholder="1"> -->
+ 
+           <!-- название билета и вопроса-->
+           <?php echo "Cоздание вопроса №$n к билету №$tkt_id" ?>
+
 <br>
         <label for="theme">Тема билета:</label> <!-- выбор темы билета -->
             <select id="theme" name="theme">
@@ -56,11 +54,7 @@ form {
                 echo "<option value=\"$id\">$name</option>";}?>
             </select>
 
-<!-- ОТРЕДАКТИРОВАТЬ СДЕЛАТЬ ВЫБОР КАРТИНКИ КРАСИВЫЙ -->
-
-        <label for="picture">Код картинки: </label> 
-        <input type="number" id="picture" name="picture" >
-        
+            
         <label for="upload_img">Загрузить изображение</label>
         <input type="file" id="upload_img" name="upload_img"
           accept=".jpg, .jpeg, .png">
@@ -90,37 +84,28 @@ form {
         <label for="question">Описание ответа, подсказка:</label>
         <input type="text" id="description" name="description" placeholder="Введите подсказку здесь" maxlength="">
 
+        <input type="reset" value="Очистить поля">
+
         <input type="submit" value="Добавить вопрос">
     </form>
-    <!-- if(isset($_POST['question'])) -->
-<?php
 
+    <?php echo "<a href=\"questions.php?tkt_id=$tkt_id\">Вернутья к списку вопросов</a>" ?>
+<?php
     if($_POST['question'] != '')  
             {
-            $tkt_id=$_POST['ticket'];
-            $pic_id=$_POST['picture'];
             $tp_id=$_POST['theme'];
             $task=$_POST['question'];
-            $true_ans=$_POST['answer'];
-            $ans1=$_POST['answer1'];
-            $ans2=$_POST['answer2'];
-            $ans3=$_POST['answer3'];
-            $ans4=$_POST['answer4'];
-            $ans5=$_POST['answer5'];
-            $description=$_POST['description'];
-        addQuestion($db, $tkt_id, $pic_id, $tp_id, $task, $true_ans, $ans1, $ans2, $ans3, $ans4, $ans5, $description);
+            if ($_POST['answer'] == '') $true_ans = null; else $true_ans=$_POST['answer'];
+            if ($_POST['answer1'] == '') $ans1 = null; else $ans1=$_POST['answer1'];
+            if ($_POST['answer2'] == '') $ans2 = null; else $ans2=$_POST['answer2'];
+            if ($_POST['answer3'] == '') $ans3 = null; else $ans3=$_POST['answer3'];
+            if ($_POST['answer4'] == '') $ans4 = null; else $ans4=$_POST['answer3'];
+            if ($_POST['answer5'] == '') $ans5 = null; else $ans5=$_POST['answer3'];
+            if ($_POST['description'] == '') $description = null; else $description=$_POST['description'];
+        addQuestion($db, $tkt_id, $tp_id, $task, $true_ans, $ans1, $ans2, $ans3, $ans4, $ans5, $description);
         UploadImage();
 }
 ?>
 
 </body>
 </html>
-<!-- привет Вадим -->
-<!-- <label for=""> </label>
-            <select id="simple" name="theme">
-                <option>Banana</option>
-                <option>Cherry</option>
-                <option>Lemon</option>
-            </select>
-        <input type="" id="" name="" placeholder="" maxlength="">
-        <textarea id="" name=""> </textarea> -->

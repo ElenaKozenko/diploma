@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
@@ -6,10 +6,10 @@
   </head>
 <body>
 <div>
-<a href = 'pdd.php' >Тренажер</a>
-<a href = 'pdd.php' >Экзамен</a>
-<a href = 'newticket.php' >Создание билета</a>
-<a href = 'pdd.php' >Смена пароля</a>
+<a href = 'tickets.php' >Билеты</a><br>
+<a href = 'trainer.php' >Тренажер</a><br>
+<a href = 'exam.php' >Экзамен</a><br>
+<a href = 'aboutme.php' >Сменить пароль</a><br>
 </div>
 </body>
 </html>

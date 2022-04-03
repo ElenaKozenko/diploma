@@ -3,18 +3,18 @@
 	require_once 'db.php';
  
 	if(ISSET($_POST['register'])){
-		if($_POST['surname'] != "" || $_POST['firstname'] != "" || $_POST['login'] != "" || $_POST['password'] != ""){
+		if($_POST['surname'] != "" || $_POST['name'] != "" || $_POST['login'] != "" || $_POST['password'] != ""){
 			try{
-				$firstname = $_POST['firstname'];
+				$name = $_POST['name'];
 				$surname = $_POST['surname'];
-				$patronumic = $_POST['patronumic'];
+				$patr = $_POST['patr'];
 				$login = $_POST['login'];
 				$category = 'student';
 				// md5 encrypted
 				// $password = md5($_POST['password']);
 				$password = $_POST['password'];
 				$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-				$sql = "INSERT INTO `testpdd0.users` VALUES ('', '$surname', '$firstname', '$patronumic', '$category' , '$login', '$password')";
+				$sql = "INSERT INTO users VALUES ('', $surname, $name, $patr, $category, $login, $password)";
 			/* 	$sql = "INSERT INTO `testpdd0.users` VALUES ('', :surname, :firstname, :patronumic, :category , :login, :password)";
 				$stmt=$db->prepare($sql);
 				$stmt->bindValue('surname', $surname, PDO::PARAM_STR);
