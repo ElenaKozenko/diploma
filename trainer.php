@@ -28,7 +28,6 @@ form {
     <?php 
     $true_ans = 0;
     foreach ($q_array as $row)
- 
     { 
         $n++;
         echo "Вопрос №$n<br>";
