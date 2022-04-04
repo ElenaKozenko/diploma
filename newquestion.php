@@ -32,9 +32,9 @@ form {
 
     $pathImg = '/pic/no_pic.png';
     if( isset($_GET['q']) ){
-        $pt = 'uploaded/'.$_GET['q'].'.jpg';
+        $pt = 'uploaded/'.$tkt_id.'_'.$_GET['q_id'].'.jpg';
         if(file_exists($pt)){
-            $pathImg = '/uploaded/'.$_GET['q'].'.jpg';
+            $pathImg = '/uploaded/'.$tkt_id.'_'.$_GET['q_id'].'.jpg';
         }
     }
     

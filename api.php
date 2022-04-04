@@ -42,8 +42,24 @@ $stmt->execute();
 while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {$result[$row['tkt_id']] = $row;}
 return $result;
 }
+//Добавление нового билета
+function  addTicket($db, $tkt_name)
+{
+    try {
+        $sql = "INSERT INTO tickets(name) VALUES(:tkt_name);";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue('tkt_name', $tkt_name, PDO::PARAM_STR);
+        $stmt->execute();
+        echo "<br>Билет успешно добавлен<br>";
+        
+    } catch (PDOException $e) {
+        echo "<br>Возникла ошибка при добавлении билета<br>";
+        echo "You have an error: " . $e->getMessage() . "<br>";
+        echo "On line: " . $e->getLine() . "<br>";
+    }
 
-
+    echo var_dump($stmt->errorInfo());
+}
 
 
 ?>
