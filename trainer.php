@@ -26,7 +26,7 @@ form {
 
 <form name="trainer" action="" method="post">
     <?php 
-    $true_ans = 0;
+    $true_ans = array();
     foreach ($q_array as $row)
     { 
         $n++;
@@ -65,7 +65,8 @@ form {
             }
         }
     }
-    $true_ans = $row['true_ans'];
+    
+    $true_ans[$n-1] = $row['true_ans'];
     echo "<input type=\"submit\" name=\"answer",$row['q_id'],"\" value=\"Далее\">";
     echo "</form>";
     }
