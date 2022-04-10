@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="utf-8" />
   <title>Главная</title>
-  </head>
+</head>
+
 <body>
-<div>
-<a href = 'tickets.php' >Билеты</a><br>
-<a href = 'trainer.php' >Тренажер</a><br>
-<a href = 'exam.php' >Экзамен</a><br>
-<a href = 'aboutme.php' >Сменить пароль</a><br>
-</div>
+  <div>
+    <?php include('header.php'); ?>
+    <br>
+  </div>
+  <div>
+    <a href='tickets.php'>Билеты</a><br>
+    <a href='trainer.php'>Тренажер</a><br>
+    <a href='exam.php'>Экзамен</a><br>
+    <a href='change_password.php'>Сменить пароль</a><br>
+  </div>
 </body>
+
 </html>

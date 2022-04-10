@@ -16,6 +16,9 @@
 			$fetch = $query->fetch();
 			if($row > 0) {
 				$_SESSION['user'] = $fetch['u_id'];
+				$_SESSION['u_name'] = $fetch['name'];
+				$_SESSION['u_surname'] = $fetch['surname'];
+				$_SESSION['u_patr'] = $fetch['patr'];
 				header("location: pdd.php");
 			} else{
 				echo "

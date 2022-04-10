@@ -2,18 +2,22 @@
 <html lang="ru">
 
 <head>
-<meta charset="utf-8" />
-  <title>Билеты</title>
+    <meta charset="utf-8" />
+    <title>Билеты</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
+    <div>
+        <?php include('header.php'); ?>
+        <br>
+    </div>
     <?php
     include 'db.php';
     include 'api.php';
     $tickets = getAllTickets($db);
-    
+
 
     foreach ($tickets as $row) {
         $tkt_id = $row['tkt_id'];
@@ -25,17 +29,17 @@
     <div>
         <form class="form_ed" id="form_ed" name="form_ed">
             <input type="text" name="tkt_name" placeholder="Введите название билета">
-            <input type="submit" name ="add" value="Добавить новый билет">
+            <input type="submit" name="add" value="Добавить новый билет">
         </form>
-    </div> 
+    </div>
 
     <?php
-    if(isset($_POST['add']))  
-        {
-            $tkt_name=$_POST['tkt_name'];
-            addTicket($db, $tkt_name);   
-        }
+    if (isset($_POST['add'])) {
+        $tkt_name = $_POST['tkt_name'];
+        addTicket($db, $tkt_name);
+    }
     ?>
 
 </body>
+
 </html>

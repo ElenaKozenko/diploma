@@ -18,7 +18,10 @@ form {
 </style>
   </head>
 <body>
-
+<div>
+    <?php include('header.php'); ?>
+    <br>
+  </div>
 <?php 
     include 'db.php';  
     include 'api.php';

@@ -5,6 +5,10 @@
 		<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
 	</head>
 <body>
+<div>
+    <?php include('header.php'); ?>
+    <br>
+  </div>
 <?php 
     include 'db.php';
     include 'api.php';
