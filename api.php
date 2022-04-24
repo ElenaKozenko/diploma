@@ -16,10 +16,10 @@ return $result;
 
 //РАБОТА С КАРТИНКАМИ
 //загрузка
-function UploadImage(){
+function UploadImage($tkt_id, $q_id){
 global $_FILES, $_POST;
 
-$fileName = $_POST['ticket'].'_'.$_POST['question'].'.jpg';
+$fileName = $tkt_id.'_'.$q_id.'.jpg';
 if ( 0 < $_FILES['upload_img']['error'] ) {
     echo 'Error: ' . $_FILES['upload_img']['error'] . '<br>';
 }else if(
@@ -34,13 +34,12 @@ if ( 0 < $_FILES['upload_img']['error'] ) {
 
 //удаление картинки
 function deleteImg($pathImg){
-    $unlink = @unlink($pathImg);
-    if($unlink == true){ 
-        echo "Картинка удалена";
-    } 
-    else{
-         echo "Возникла ошибка при удалении ошибки";
-         echo var_dump($unlink->errorInfo());
+   try{
+   unlink($pathImg);
+   }
+    catch (PDOException $e) {
+        echo "You have an error: " . $e->getMessage() . "<br>";
+        echo "On line: " . $e->getLine() . "<br>";
     }
 }
 

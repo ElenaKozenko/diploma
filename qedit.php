@@ -126,7 +126,7 @@
             if ($_POST['description'] == '') $description = null; else $description=$_POST['description'];
             //editQuestion из questions_query.php
         editQuestion($db, $q_id, $tkt_id, $tp_id, $task, $true_ans, $ans1, $ans2, $ans3, $ans4, $ans5, $description);
-        UploadImage();
+        UploadImage($tkt_id, $q_id);
         
         
         if(isset($_POST['img_del']) &&  $_POST['img_del'] == 'Yes') 
