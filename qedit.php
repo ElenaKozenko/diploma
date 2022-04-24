@@ -1,28 +1,31 @@
-<!doctype html>
+<?php include('header.php'); 
+  get_session();
+?>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <title>Новый вопрос</title>
-  <style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Редактор вопроса</title>
+    <style>
     label, input {
         width: 450px;
         padding: 5px;
         margin: 20px;
     }
     *, *:before, *:after {
-  box-sizing: border-box;
-}
-form {
-    width: 500px;
-}
+        box-sizing: border-box;
+    }
+    form {
+        width: 500px;
+    }
 </style>
-  </head>
+</head>
 <body>
-<div>
-    <?php include('header.php'); ?>
-    <br>
-  </div>
 <?php 
+    get_header();
     include 'db.php';  
     include 'api.php';
     include 'questions_query.php';
@@ -35,17 +38,22 @@ form {
     $tkt = getAllTickets($db);
     $qform = questionFormFill($db, $q_id);
     
+    $pt = 'uploaded/' . $tkt_id . '_' . $q_id . '.jpg';
+    if (file_exists($pt)) {
+        $pathImg = '/uploaded/' . $tkt_id . '_' . $q_id . '.jpg';
+    } else $pathImg = '/pic/no_pic.png';
 
-    $pathImg = '/pic/no_pic.png';
+
+   /*  $pathImg = '/pic/no_pic.png';
     if( isset($_GET['q_id']) ){
         $pt = 'uploaded/'.$_GET['q_id'].'.jpg';
         if(file_exists($pt)){
             $pathImg = '/uploaded/'.$_GET['q_id'].'.jpg';
         }
-    }
+    } */
     
 ?>
-<img height="200px" src="<?php echo $pathImg; ?>" alt="">
+<img height="150px" src="<?php echo $pathImg; ?>" alt="">
     <form name="" action="" method="post" enctype="multipart/form-data">
         
         <!-- название билета и вопроса-->
@@ -70,7 +78,8 @@ form {
         <input type="file" id="upload_img" name="upload_img"
           accept=".jpg, .jpeg, .png">
 
-        <br><input style="width: 20px;" type="checkbox" id="img_del" name="img_del">Удалить картинку<br>
+        
+        <br><input style="width: 20px;" type="checkbox" id="img_del" name="img_del" value="Yes">Удалить картинку<br>
       
        
         <label for="question">Вопрос: </label> <!-- ввод вопроса -->
@@ -115,11 +124,18 @@ form {
             if ($_POST['answer4'] == '') $ans4 = null; else $ans4=$_POST['answer4'];
             if ($_POST['answer5'] == '') $ans5 = null; else $ans5=$_POST['answer5'];
             if ($_POST['description'] == '') $description = null; else $description=$_POST['description'];
+            //editQuestion из questions_query.php
         editQuestion($db, $q_id, $tkt_id, $tp_id, $task, $true_ans, $ans1, $ans2, $ans3, $ans4, $ans5, $description);
         UploadImage();
+        
+        
+        if(isset($_POST['img_del']) &&  $_POST['img_del'] == 'Yes') 
+        { 
+            if( $pathImg != '/pic/no_pic.png') {
+                deleteImg($pathImg);
+            }
+        }  
     }
-
-
 ?>
 
 <?php echo "<a href=\"questions.php?tkt_id=$tkt_id\">Вернутья к списку вопросов</a>" ?>

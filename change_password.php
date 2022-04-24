@@ -1,15 +1,18 @@
+<?php include('header.php'); 
+  get_session();
+?>
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
-		<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
-	</head>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Смена пароля</title>
+</head>
 <body>
+<?php get_header(); ?>
 
-	<div class="col-md-3"></div>
-	<div class="col-md-6 well">
-
-		<div class="col-md-8">
 			<form method="POST">	
 				<h4 class="text-success">Смена пароля</h4>
 				<hr style="border-top:1px groovy #000;">

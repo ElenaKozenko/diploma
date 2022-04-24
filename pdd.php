@@ -1,21 +1,21 @@
+<?php include('header.php'); 
+  get_session();
+?>
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
-  <meta charset="utf-8" />
-  <title>Главная</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Главная</title>
 </head>
-
 <body>
+
+    <?php get_header(); ?>
+
   <div>
-    <?php include('header.php'); ?>
-    <br>
-  </div>
-  <div>
-    <a href='tickets.php'>Билеты</a><br>
-    <a href='trainer.php'>Тренажер</a><br>
-    <a href='exam.php'>Экзамен</a><br>
-    <a href='change_password.php'>Сменить пароль</a><br>
+   добавить текст о школе и лого
   </div>
 </body>
 

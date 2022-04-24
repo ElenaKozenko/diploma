@@ -19,11 +19,14 @@
 				$_SESSION['u_name'] = $fetch['name'];
 				$_SESSION['u_surname'] = $fetch['surname'];
 				$_SESSION['u_patr'] = $fetch['patr'];
-				header("location: pdd.php");
+				//header("location: pdd.php");
+				echo "
+				<script>window.location = 'pdd.php';</script>
+				";
 			} else{
 				echo "
 				<script>alert('Неверный логин или пароль')</script>
-				<script>window.location = 'index.php'</script>
+				<script>window.location = 'index.php';</script>
 				";
 			}
 		}else{

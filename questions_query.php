@@ -101,8 +101,7 @@ function editQuestion($db, $q_id, $tkt_id, $tp_id, $task, $true_ans, $ans1, $ans
     }
 }
 
-
-
+//удаление вопроса
 function deleteQuestion($db, $q_id)
 {
         $sql="DELETE FROM questions WHERE q_id=:q_id";

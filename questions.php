@@ -1,15 +1,19 @@
+<?php include('header.php'); 
+  get_session();
+?>
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
-		<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
-	</head>
-<body>
-<div>
-    <?php include('header.php'); ?>
-    <br>
-  </div>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Вопросы</title>
+</head>
+<bode>
+
 <?php 
+    get_header();
     include 'db.php';
     include 'api.php';
     include 'questions_query.php';
@@ -33,9 +37,5 @@
 </table>
 <?php $n++;
 echo "<a href=\"newquestion.php?tkt_id=$tkt_id&n=$n\">Добавить новый вопрос к билету</a>" ?>
-
-
-
-
 </body>
 </html>
