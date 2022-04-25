@@ -12,8 +12,6 @@ try {
         PDO::ATTR_EMULATE_PREPARES   => false, */
     ];
     $db = new PDO($dsn, $username, $passwd, $opt);
-
-
 } 
 catch (PDOException $e)
  { echo $e->getMessage(); }
