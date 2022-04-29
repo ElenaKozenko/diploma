@@ -6,10 +6,10 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="widtd=device-widtd, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>Вопросы</title>
-</head>
+    </head>
 <bode>
 
 <?php 
@@ -28,10 +28,10 @@
     <?php $n=0;
     foreach ($que as $result){?>
     <tr>
-        <th><?php $n++; echo $n?></th>
-        <th><?php echo $result['task']?></th>
-        <th><?php echo "<a href=\"qedit.php?tkt_id=$tkt_id&q_id=", $result['q_id'], "&n=$n\">Редактировать</a>" ?><th> 
-        <th><?php echo "<a href=\"qdelete.php?q_id=", $result['q_id'],"\">Удалить</a>" ?><th>          
+        <td><?php $n++; echo $n?></td>
+        <td><?php echo $result['task']?></td>
+        <td><?php echo "<a href=\"qedit.php?tkt_id=$tkt_id&q_id=", $result['q_id'], "&n=$n\">Редактировать</a>" ?><td> 
+        <td><?php echo "<a href=\"qdelete.php?q_id=".$result['q_id']."&tkt_id=".$tkt_id."\">Удалить</a>" ?><td>          
     </tr>
     <?php } ?>
 </table>

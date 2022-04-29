@@ -22,7 +22,6 @@
     $n = 0; //номер вопроса
     echo $name; //название билета
 
-
     $q_array = getQuestByTicket($db, $tkt_id); //из api.php
     $a_id = addNewAnswer($db, $_SESSION['user'], $tkt_id); //из api.php - код текущего ответа
 ?>   

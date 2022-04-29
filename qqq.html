@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<form id="form" action="qqqq.php" method="post">
+    <div class="test">
+        <div ans="1" class="answer">Вопрос 1 <br/> 
+            <input name="ans_1" type="radio" value="1">
+            <input name="ans_1" type="radio" value="2">
+            <input name="ans_1" type="radio" value="3"> </div>
+        <div id="ans_2" ans="2" class="answer">Вопрос 2 <br/> 
+            <input name="ans_2" type="radio" value="1">
+            <input name="ans_2" type="radio" value="2">
+            <input name="ans_2" type="radio" value="3"> </div>
+        <div id="ans_3" ans="3" class="answer">Вопрос 3 <br/>
+            <input name="ans_3" type="radio" value="1">
+            <input name="ans_3" type="radio" value="2">
+            <input name="ans_3" type="radio" value="3"></div>
+    </div>
+    <input type="hidden" name="body" id="body">
+</form>
+    <button onclick="nextAns()">Далее</button>
+    <script>  
+        let curAns = 0;
+        let ans = document.querySelectorAll(".test .answer");
+        let count = ans.length;
+        nextAns();
+        function nextAns() {
+            if(curAns < count){
+                curAns++;
+                for (let i = 0; i < ans.length; i++) {
+                    const element = ans[i];
+                    if(element.getAttribute('ans') == curAns){
+                        element.classList.toggle('_active', true);
+                    }else{
+                        element.classList.toggle('_active', false);
+                    }
+                }
+            }
+            else{
+                let answers = [];
+                for (let i = 0; i < ans.length; i++) {
+                    const element = ans[i];
+                    let lis = element.querySelectorAll('input');
+                    let val = undefined;
+                    for (let j = 0; j < lis.length; j++) {
+                        const element = lis[j];
+                        if(element.checked){
+                            val = element.value;
+                        }
+                    }
+                    answers.push(val);
+                }
+                const TestBody = document.getElementById('body');
+                TestBody.value = JSON.stringify(answers);
+                document.forms.form.submit();
+            }
+    }
+    </script>
+<style>
+.test .answer{
+    display: none;
+}
+.test .answer._active{
+    display: block;
+}
+
+</style>
+
+</body>
+</html>

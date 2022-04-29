@@ -19,6 +19,7 @@
 				$_SESSION['u_name'] = $fetch['name'];
 				$_SESSION['u_surname'] = $fetch['surname'];
 				$_SESSION['u_patr'] = $fetch['patr'];
+				$_SESSION['status'] = $fetch['category'];
 				//header("location: pdd.php");
 				echo "
 				<script>window.location = 'pdd.php';</script>

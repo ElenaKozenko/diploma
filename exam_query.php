@@ -125,7 +125,7 @@ if($err < 3) {
     $status = 1;
 }
 else {
-    echo "<hr> Допущено ошибок: $err .<div class=\"loss\">Экзамен не пройден.</div>";
+    echo "<hr>Допущено ошибок: $err .<div class=\"loss\">Экзамен не пройден.</div>";
     $status = 0;
 }
 $user_ans_str = json_encode($user_ans);

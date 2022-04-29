@@ -19,7 +19,7 @@
     include 'api.php';
     $tickets = getAllTickets($db);
 
-echo "<div class=\"tkt\">";
+echo "<p>Нажмите на название билета, чтобы перейти к списку вопросов.</p><div class=\"tkt\">";
     foreach ($tickets as $row) {
         $tkt_id = $row['tkt_id'];
         $name = $row['name'];

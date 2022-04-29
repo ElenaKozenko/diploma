@@ -40,9 +40,16 @@
     
     $pt = 'uploaded/' . $tkt_id . '_' . $q_id . '.jpg';
     if (file_exists($pt)) {
-        $pathImg = '/uploaded/' . $tkt_id . '_' . $q_id . '.jpg';
+        $pathImg = 'uploaded/' . $tkt_id . '_' . $q_id . '.jpg';
     } else $pathImg = '/pic/no_pic.png';
 
+    if(isset($_POST['img_del']) &&  $_POST['img_del'] == 'Yes') 
+    { 
+        if( $pathImg != '/pic/no_pic.png') {
+            deleteImg($pathImg);
+            $pathImg = '/pic/no_pic.png';
+        }
+    }
 
    /*  $pathImg = '/pic/no_pic.png';
     if( isset($_GET['q_id']) ){
@@ -82,14 +89,14 @@
         <br><input style="width: 20px;" type="checkbox" id="img_del" name="img_del" value="Yes">Удалить картинку<br>
       
        
-        <label for="question">Вопрос: </label> <!-- ввод вопроса -->
+        <label for="question">Вопрос*: </label> <!-- ввод вопроса -->
         <input type="text" id="question" name="question" value="<?php echo $row1['task'];?>">
         
          <!-- ввод ответов -->
-        <label for="answer1">Вариант ответа 1: </label>
+        <label for="answer1">Вариант ответа 1*: </label>
         <input type="text" id="answer1" name="answer1" value="<?php echo $row1['ans1'];?>">
 
-        <label for="answer2">Вариант ответа 2:</label>
+        <label for="answer2">Вариант ответа 2*:</label>
         <input type="text" id="answer2" name="answer2" value="<?php echo $row1['ans2'];?>">
 
         <label for="answer3">Вариант ответа 3:</label>
@@ -101,41 +108,50 @@
         <label for="answer5">Вариант ответа 5:</label>
         <input type="text" id="answer5" name="answer5" value="<?php echo $row1['ans5'];?>"> 
 
-        <label for="answer">Номер верного ответа:</label> <!-- номер верного ответа -->
-        <input type="number" id="answer" name="answer" value="<?php echo $row1['true_ans'];?>">
+        <label for="answer">Номер верного ответа*:</label> <!-- номер верного ответа -->
+        <input type="number" id="answer" name="answer" min="1" max="5" value="<?php echo $row1['true_ans'];?>">
 
         <label for="question">Описание ответа, подсказка:</label>
         <input type="text" id="description" name="description" value="<?php echo $row1['description'];}?>">
 
         <input type="submit" value="Редактировать вопрос">
     </form>
-    <!-- if(isset($_POST['question'])) -->
+<p>*-обязательные поля</p>
 <?php
     if($_POST['question'] != '')  
-            {
-            
-            if ($_POST['theme'] == $tpid1) $tp_id = $tp_id1;
-            else $tp_id=$_POST['theme'];
-            $task=$_POST['question'];
-            if ($_POST['answer'] == '') $true_ans = null; else $true_ans=$_POST['answer'];
-            if ($_POST['answer1'] == '') $ans1 = null; else $ans1=$_POST['answer1'];
-            if ($_POST['answer2'] == '') $ans2 = null; else $ans2=$_POST['answer2'];
-            if ($_POST['answer3'] == '') $ans3 = null; else $ans3=$_POST['answer3'];
-            if ($_POST['answer4'] == '') $ans4 = null; else $ans4=$_POST['answer4'];
-            if ($_POST['answer5'] == '') $ans5 = null; else $ans5=$_POST['answer5'];
+{
+$num=0;
+
+$tp_id=$_POST['theme'];
+$task=$_POST['question'];
+if ($_POST['answer1'] == '') 
+{
+    $ans1 = null; echo "<script>alert('Не заполнено обязательное поле Ответ 1')</script>";} 
+    else{
+        $ans1=$_POST['answer1']; $num++;
+
+        if ($_POST['answer2'] == '') { $ans2 = null; echo "<script>alert('Не заполнено обязательное поле Ответ 2')</script>";}
+        else{
+            $ans2=$_POST['answer2']; $num++;
+        
+            if ($_POST['answer3'] == '') $ans3 = null; else {$ans3=$_POST['answer3']; $num++;}
+            if ($_POST['answer4'] == '') $ans4 = null; else {$ans4=$_POST['answer4']; $num++;}
+            if ($_POST['answer5'] == '') $ans5 = null; else {$ans5=$_POST['answer5']; $num++;}
+
             if ($_POST['description'] == '') $description = null; else $description=$_POST['description'];
-            //editQuestion из questions_query.php
-        editQuestion($db, $q_id, $tkt_id, $tp_id, $task, $true_ans, $ans1, $ans2, $ans3, $ans4, $ans5, $description);
-        UploadImage($tkt_id, $q_id);
-        
-        
-        if(isset($_POST['img_del']) &&  $_POST['img_del'] == 'Yes') 
-        { 
-            if( $pathImg != '/pic/no_pic.png') {
-                deleteImg($pathImg);
+
+            if ($_POST['answer'] == '') {$true_ans = null;}
+            elseif($_POST['answer'] > $num) echo '<script>alert("Вы ввели в качестве номера верного ответа '.$_POST['answer'].', но заполнили '.$num.' поля ответов")</script>';
+            else{ 
+                    $true_ans=$_POST['answer']; 
+                    editQuestion($db, $q_id, $tkt_id, $tp_id, $task, $true_ans, $ans1, $ans2, $ans3, $ans4, $ans5, $description);
+                    UploadImage($tkt_id, $q_id);
+                    echo "<script>window.location = 'questions.php?tkt_id=$tkt_id';</script>
+				";
             }
-        }  
-    }
+        }
+    }  
+}
 ?>
 
 <?php echo "<a href=\"questions.php?tkt_id=$tkt_id\">Вернутья к списку вопросов</a>" ?>

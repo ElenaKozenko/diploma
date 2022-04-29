@@ -21,7 +21,8 @@ global $_FILES, $_POST;
 
 $fileName = $tkt_id.'_'.$q_id.'.jpg';
 if ( 0 < $_FILES['upload_img']['error'] ) {
-    echo 'Error: ' . $_FILES['upload_img']['error'] . '<br>';
+    if($_FILES['upload_img']['error']  != '4')
+    echo 'Error: ' . $_FILES['upload_img']['error'] . '<br>'; //файл не был загружен
 }else if(
     isset($_FILES['upload_img']) &&
     $_FILES['upload_img']['size'] < 10000000 && 
@@ -70,8 +71,6 @@ function  addTicket($db, $tkt_name)
         echo "You have an error: " . $e->getMessage() . "<br>";
         echo "On line: " . $e->getLine() . "<br>";
     }
-
-    echo var_dump($stmt->errorInfo());
 }
 
 //РАБОТА С ТАБЛИЦЕЙ "Вопросы"  ВЫВОД ИНФОРМАЦИИ ИЗ "Вопросы" по коду билета
@@ -86,7 +85,6 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC))
     $result[$row['q_id']] = $row;
 }
 return $result;
-
 }
 
 //РАБОТА С ТАБЛИЦЕЙ "Ответы" добавление времени начала экзамена, пользователя, кода билета
@@ -110,10 +108,6 @@ function addNewAnswer($db, $u_id, $tkt_id){
         echo "On line: " . $e->getLine() . "<br>";
     }
 
-    echo var_dump($stmt->errorInfo());
 }
-
-
-
 
 ?>

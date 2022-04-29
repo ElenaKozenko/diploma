@@ -3,6 +3,7 @@
 ?>
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,12 +13,10 @@
 </head>
 
 <body>
-<div>
-    <?php get_header(); ?>
-    
-    <br>
-  </div>
-<?php 
+    <div>
+        <?php get_header(); ?>
+    </div>
+    <?php 
 include 'db.php';
 
 function getTrueAns($db, $tkt_id) //функция для создания массива верных ответов к этому билету
@@ -83,4 +82,5 @@ for($i = 0; $i < count($arr); $i++)
 ?>
 
 </body>
-</html> 
+
+</html>

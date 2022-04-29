@@ -57,10 +57,13 @@ if ($_POST['submit'])
 	$new_password2 = $_POST['password2'];
 
 	if($login == $login_db){
+
 		if($new_password == $new_password2){
-			$sql = "UPDATE users SET password = $new_password WHERE users.u_id = $u_id";
+			if($new_password == '')	{echo '<p>Вы не ввели пароль</p>'; }
+			else{		
+			$sql = "UPDATE users SET password = '$new_password' WHERE users.u_id = $u_id;";
 			$db->exec($sql);
-			echo '<p>Пароль успешно изменен</p>';
+			echo '<p>Пароль успешно изменен</p>';}
 		}
 		else{
 			echo '<p>Пароли не совпадают</p>';
