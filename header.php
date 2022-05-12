@@ -15,7 +15,7 @@ echo '<div class="nav-item"><a href="pdd.php">Главная</a></div>';
       echo '<div class="nav-item"><a href="trainer_tkt.php">Тренажер</a></div>
       <div class="nav-item"><a href="exam_tkt.php">Экзамен</a></div>
       <div class="nav-item"><a href="myresults.php">Мои результаты</a></div>';
-      if($_SESSION['status'] === 'admin') echo '<div class="nav-item"><a href="student_results.php">Результаты студентов</a></div>';
+      if($_SESSION['status'] === 'admin' || $_SESSION['status'] === 'instructor'  ) echo '<div class="nav-item"><a href="student_results.php">Результаты студентов</a></div>';
       echo '<div class="nav-item"><a href="change_password.php">Сменить пароль</a></div> 
       <div class="nav-item nav-user"><a href="logout.php">Выход</a></div>
       <div class="nav-item nav-user"><a>'.$u_name.'</a></div>';

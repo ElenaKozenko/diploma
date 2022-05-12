@@ -27,7 +27,13 @@
     //Вывод перечня студентов из представления
     function getAllStudents($db)
     {
-        $sql="SELECT * FROM students;";
+        $inst = $_SESSION['user'];
+        if ($_SESSION['status'] === 'instructor') {
+            $sql="SELECT * FROM students WHERE instructor = $inst;";
+        }
+        else if ($_SESSION['status'] === 'admin') {
+            $sql="SELECT * FROM students;";
+        }      
         $result=array();
         $stmt=$db->prepare($sql);
         $stmt->execute();
