@@ -108,7 +108,12 @@ reset.onclick = function() {
             <?php if ($row['ans5'] != null) {  
                 echo "<div class=\"form-check\"><input type=\"radio\" name=\"ans_$n\" value=\"5\" class=\"form-check-input\"> <label class=\"form-check-label\">", $row['ans5'], "</label></div>"; }}} ?>
 
+            <div class="btn-description">
+                <button onclick="DescriptionToggle(event)">Подсказка</button>
+            </div>
+            <div class="description"><?php echo $row['description'];  ?></div>
         </div>
+        
     </div>
 <?php
 }?>
@@ -154,6 +159,16 @@ reset.onclick = function() {
             }
     }
 
+    function DescriptionToggle(e){
+        e.preventDefault();
+        const descript = e.target.parentElement.parentElement.querySelector('.description');
+        if(descript){
+            let isAct = descript.classList.toggle('__active');
+            e.target.innerText = isAct ? "Подсказка [скрыть]" : "Подсказка";
+        }
+       
+    }
+
 </script>
 <style>
 .test .answer{
@@ -162,7 +177,40 @@ reset.onclick = function() {
 .test .answer._active{
     display: block;
 }
+.description{
+    display: none;;
+    font-size: 14px;
+    background-color: #f7f7f7;
+    padding: 6px;
+    border-radius: 4px;
+    border: 1px solid #e3e3e3;
+    
+}
+.description.__active{
+    display: block;
+    animation: showdesc 0.2s;
+}
+.btn-description button{
+    outline: none;
+    background-color: inherit;
+    border: none;
+    color: #4d94de;
+   
+   cursor: pointer;
+}
 
+@keyframes showdesc{
+    from{
+        padding-top: 0px;
+        padding-bottom: 0px;
+        opacity: 0;
+    }
+    to{
+        padding-top: 6px;
+        padding-bottom: 6px;
+        opacity: 1;
+    }
+}
 
 
 </style>
