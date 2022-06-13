@@ -111,7 +111,7 @@ reset.onclick = function() {
             <div class="btn-description">
                 <button onclick="DescriptionToggle(event)">Подсказка</button>
             </div>
-            <div class="description"><?php echo $row['description'];  ?></div>
+            <pre class="description"><?php echo $row['description'];  ?></pre>
         </div>
         
     </div>
@@ -189,6 +189,8 @@ reset.onclick = function() {
 .description.__active{
     display: block;
     animation: showdesc 0.2s;
+    white-space: pre-wrap;
+    font-family: inherit;
 }
 .btn-description button{
     outline: none;
