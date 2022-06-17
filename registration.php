@@ -51,17 +51,40 @@
 					<label>Пароль</label>
 					<input type="password" class="form-control" name="password" maxlength="15">
 				</div>
+				<div class="form-check">
+  					<input class="form-check-input" type="checkbox" autocomplete="off" value="false" id="Check1" onclick="checkPrivacy(this)" >
+  					<label class="form-check-label" for="Check1">
+					  Я согласен на обработку <a href="">персональных данных</a>
+ 	 				</label>
+				</div>
 				<br />
 				<div class="form-group">
-					<button class="btn btn-primary form-control" name="register">Зарегистрироваться</button>
+					<button class="btn btn-primary form-control privacy" name="register" id="button-register" disabled title="Примите политику обработки персональных данных">Зарегистрироваться</button>
 				</div>
 				<a href="index.php">Авторизация</a>
 			</form>
 	</div>
+	
 <div class="col-sm"></div>
+
 </div>
 </div>
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script>
+const btnAction = document.getElementById('button-register');
+
+function checkPrivacy(itm){
+	btnAction.toggleAttribute('disabled', !itm.checked);
+	btnAction.setAttribute('title', !itm.checked ? 'Примите политику обработки персональных данных' : '');
+}
+
+</script>
+<style>
+.btn.privacy[disabled]{
+	cursor: not-allowed;
+}
+</style>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>	
 </body>
